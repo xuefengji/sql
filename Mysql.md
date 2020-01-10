@@ -21,3 +21,32 @@ use：
 use maizi
 
 #### 数据类型
+1、整数类型
++ TINYINT  
++ SMALLINT
++ MEDIUMINT
++ INT
++ BIGINT
++ BOOL，BOOLEA 等价于TINYINT(1)，0为false，其余为true
+
+2、浮点类型
++ float[(M,D)]   M代表的总位数，D代表小数点后的位数
++ double
++ decimal 和double一样，内部以字符串形式存储
+
+3、字符串
++ char(M) ：定长字符串，M代表字符长度
++ varchar(M)：变长字符串 M代表字符长度
++ TINYTEXT
++ TEXT :存储字符串
++ MEDIUMTEXT
++ LONGTEXT
++ ENUM("value1","value2"......)：枚举类型字符串，最多列举65535个
++ SET("value1","value2"............)：集合
+
+4、日期时间类型
++ TIME ：时间
++ DATE：日期
++ DATETIME：日期时间
++ TIMESTAMP：时间戳
++ YEAR：年份
