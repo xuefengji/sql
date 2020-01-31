@@ -11,6 +11,21 @@
 cmd形式：mysql  -h host -u root -p 
 修改提示符：mysql  -h host -u root -p --prompt 要修改的提示符
 查看数据库：show database
+```
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| test               |
++--------------------+
+5 rows in set (0.35 sec)
+
+mysql>
+```
 
 2、数据库简单操作
 create：
