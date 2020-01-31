@@ -57,6 +57,7 @@ zerofill：零填充，当插入的数据没有达到最小范围时，用0进�
 
 
 2、浮点类型：可以四舍五入
+
 + float[(M,D)]   M代表的总位数，D代表小数点后的位数
 + double
 + decimal ：内部以字符串形式存储，精度比较高
@@ -85,10 +86,30 @@ char和varchar存储中文字符时，使用一个1个字符，utf-8存储中文
 4、日期时间类型
 
 + TIME ：时间
+
+  insert test10 values(‘1 12：12：12’)
+
+  结果为1天的小时数加上12小时
+
+  insert test10 values(‘12：11’)
+
+  结果为12：11：00
+
+  insert test10 values(‘1211’)
+
+  结果为00：12：11
+
 + DATE：日期
+
+  insert test11 values(‘1211’)、insert test11 values(‘12/1/1’)、insert test11 values(‘120101’)
+
+  结果为2012-01-01
+
 + DATETIME：日期时间
+
 + TIMESTAMP：时间戳
-+ YEAR：年份
+
++ YEAR：年份（1901-2155），可以设置4位年份、2位年份、字符串形式，需要注意的时0，字符串0认为2000年，0代表0000
 
 5、二进制类型
 
