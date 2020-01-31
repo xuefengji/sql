@@ -26,6 +26,11 @@ mysql> show databases;
 
 mysql>
 ```
+查看表结构方式：
+
++ desc 表名
++ describe 表名
++ show columns from 表名
 
 2、数据库简单操作
 create：
@@ -45,10 +50,20 @@ use maizi
 + BIGINT
 + BOOL，BOOLEA 等价于TINYINT(1)，0为false，其余为true
 
+无符号：unsined 
+
+zerofill：零填充，当插入的数据没有达到最小范围时，用0进行填充，设置zerofill后会自动设置为无符号
+
+
+
 2、浮点类型
 + float[(M,D)]   M代表的总位数，D代表小数点后的位数
 + double
-+ decimal 和double一样，内部以字符串形式存储
++ decimal ：内部以字符串形式存储，精度比较高
+
+
+
+
 
 3、字符串
 + char(M) ：定长字符串，M代表字符长度
