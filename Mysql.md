@@ -22,6 +22,7 @@ use maizi
 
 #### 数据类型
 1、整数类型
+
 + TINYINT  
 + SMALLINT
 + MEDIUMINT
@@ -50,3 +51,24 @@ use maizi
 + DATETIME：日期时间
 + TIMESTAMP：时间戳
 + YEAR：年份
+
+5、二进制类型
+
+#### 存储引擎
+
+1、什么是存储引擎
+表的类型
+
+2、如何查看MySql的存储引擎
+show engines
+show engines\G 以网格形式查看
+show variables like ‘have%’ ：查看显示支持的存储引擎信息
+show variables like ‘storage_engine’：查看默认的存储引擎
+
+
+3、mysql常用存储引擎及特点
+InnoDB：
+MyISAM：
+MEMORy：
+
+4、如何选择合适的存储引擎
