@@ -180,6 +180,8 @@ create table [if not exists] tbl_name(字段名 字段类型 [unsigned|zerofill]
 
   create table if not exists employee(id int key auto_increment,username varchar(20)not null，depId tinyint unsigned,foreign key(depId) references department(id));
 
+  
+
 + not null：非空
 
   create table if not exists user3(id int key auto_increment,username varchar(20)not null，password char(32)not null);
