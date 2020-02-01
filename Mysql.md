@@ -235,6 +235,24 @@ create table [if not exists] tbl_name(字段名 字段类型 [unsigned|zerofill]
 
   alter table tbl_name change 旧字段名称 新字段名称 字段类型 [完整性约束] [first|after]
 
-+ 添加和删除默认值
-  + alter table tbl_name alter 字段名称 set default 默认值
-  + alter table tbl_name alter 字段名称 drop default 
++ 添加和删除默认值：set/drop
+  + 添加：alter table tbl_name alter 字段名称 set default 默认值
+  + 删除：alter table tbl_name alter 字段名称 drop default 
++ 添加删除主键
+  + 添加：alter table tbl_name add [constraint [symbol]] primary key[index_type] (字段名称 ,....)
+  + 删除：alter table tbl_name drop primary key
+  + 主键有自增长时 ，需要先去掉自增长属性，再进行删除
+
++ 添加删除唯一
+
+  + 添加：alter table tbl_name add [constraint [symbol]] unique[index|key] [索引名称] (字段名称 ,....)
+
+  + 删除：alter table tbl_name drop {index|key} index_name
+
++ 修改表的存储引擎
+
+  alter table tbl_name engine = 存储引擎名称
+
++ 设置自增长的值
+
+  alter table tbl_name auto_increment = 自增长的值
