@@ -178,6 +178,8 @@ create table [if not exists] tbl_name(字段名 字段类型 [unsigned|zerofill]
 
 + foreign key：外键
 
+  create table if not exists employee(id int key auto_increment,username varchar(20)not null，depId tinyint unsigned,foreign key(depId) references department(id));
+
 + not null：非空
 
   create table if not exists user3(id int key auto_increment,username varchar(20)not null，password char(32)not null);
@@ -447,4 +449,6 @@ select select_expr[,select_expr查询表达式]
     + 外键列和参照列必须具有相似的数据类型,其中数字的长度或是否有符号位必须相同,而字符的长度可以不同
   + 外键约束的参照操作
     + cascade:从父表删除或更新且自动删除或更新子表中匹配的行
-    + 
+    + set null:从父表删除或更新,并设置子表中的外键列位null.如果使用该选项,必须保证子表列没有指定not null
+    + restrict:拒绝对父表的删除或更新操作
+    + no action:标准SQL的关键字,再Mysql中与restrict相同
