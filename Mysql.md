@@ -138,7 +138,7 @@ MEMORy：
 
 1、如何创建数据表
 
-create table [if not exists] tbl_name(字段名 字段类型 [完整性约束条件])engine=引擎名称 charset=编码方式;
+create table [if not exists] tbl_name(字段名 字段类型 [unsigned|zerofill] [not null] [default] [[primary ] key|unique [key]])engine=引擎名称 charset=编码方式 auto_increment = z自增长值;
 
 完整性约束条件：
 
@@ -176,9 +176,19 @@ create table [if not exists] tbl_name(字段名 字段类型 [完整性约束条
 
 + not null：非空
 
-+ unique key：唯一
+  create table if not exists user3(id int key auto_increment,username varchar(20)not null，password char(32)not null);
+
+  
+
++ unique key：唯一，可以省略key
+
+  
 
 + default：默认值
+
+  not null配合默认值使用
+
+  create table if not exists user3(id int key auto_increment,username varchar(20)not null，password char(32)not null，age tinyint unsigned not null default 18);
 
 
 
@@ -189,4 +199,6 @@ create table [if not exists] tbl_name(字段名 字段类型 [完整性约束条
   + desc tbl_name
   + describe tbl_name
   + show columns from tbl_name
++ 查看创建表时信息：
+  + show create table 表名
 
