@@ -359,10 +359,10 @@ select select_expr[,select_expr查询表达式]
     + select * from user group by sex
     + select * from user group by sex,id  多个条件分组
 
-  注意:如果使用group by出现
+  注意:如果使用group by出现以下错误:
 
   ```
-   1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'test.user.id' which i
+  Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'test.user.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
    
    解决办法:
    1.查看sql_mode:select version(),@@sql_mode
