@@ -9,8 +9,12 @@
 #### 简单操作
 1、打开数据库
 cmd形式：mysql  -h host -u root -p 
+
+mysql  -h host -u root -p -D 要打开的数据库名
+
 修改提示符：mysql  -h host -u root -p --prompt 要修改的提示符
 查看数据库：show database
+
 ```
 mysql> show databases;
 +--------------------+
@@ -256,3 +260,7 @@ create table [if not exists] tbl_name(字段名 字段类型 [unsigned|zerofill]
 + 设置自增长的值
 
   alter table tbl_name auto_increment = 自增长的值
+
++ 删除数据表
+
+  drop table [if exists] tbl_name[,tbl_name......]
