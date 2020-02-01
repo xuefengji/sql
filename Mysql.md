@@ -335,6 +335,10 @@ select select_expr[,select_expr查询表达式]
   + *表示所有字段，table_name.字段为哪个表中的字段
   + 可以使用[as] alias_name为其赋予别名
 
++ 去除重复的值
+
+  select distinct * from user;
+
 + where条件查询
 
   + 比较运算符：=、>= 、<=、> 、<、!=、!>、!<、<=>可以检测null值
@@ -363,6 +367,7 @@ select select_expr[,select_expr查询表达式]
 
   ```
   Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'test.user.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+   出错原因:5.7版本中默认以only_full_group_by sql模式,也就是select后的查询表达式只能是group by后面的或由聚合函数得到的
    
    解决办法:
    1.查看sql_mode:select version(),@@sql_mode
