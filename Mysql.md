@@ -144,10 +144,30 @@ create table [if not exists] tbl_name(字段名 字段类型 [完整性约束条
 
 + primary key：主键
 
+  值不能重复，非空，作用在无意义的字段上
+
+  create table if not exists user1(id int primary key,username varchar(20));
+
+  复合主键：primary key（id，card）：必须同时满足多个条件
+
+  create table if not exists user1(id int ,username varchar(20),card char(18),primary key(id,card));
+
+  设置主键时可以省略primary
+
+  create table if not exists user1(id int key,username varchar(20));
+
+  
+
 + auto_increment：自增长
+
+  
+
 + foreign key：外键
+
 + not null：非空
+
 + unique key：唯一
+
 + default：默认值
 
 
