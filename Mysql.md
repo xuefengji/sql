@@ -158,7 +158,17 @@ create table [if not exists] tbl_name(字段名 字段类型 [完整性约束条
 
   
 
-+ auto_increment：自增长
++ auto_increment：自增长，要和主键配合使用
+
+  create table if not exists user2(id int key auto_increment,username varchar(20));
+
+  这只指定auto_inctement值：
+
+  create table if not exists user2(id int key auto_increment,username varchar(20))auto_increment=100;
+
+  默认情况下，插入null或其他数据时，id会根据已有最大号自加1
+
+  修改自增长值：alter table user2 auto_increment=500；
 
   
 
