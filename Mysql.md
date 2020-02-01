@@ -264,3 +264,41 @@ create table [if not exists] tbl_name(字段名 字段类型 [unsigned|zerofill]
 + 删除数据表
 
   drop table [if exists] tbl_name[,tbl_name......]
+
+
+
+#### 表数据操作DML
+
+1、插入数据
+
++ 不指定具体的字段名
+
+  insert [into] tbl_name values|value(值1,.....)
+
++ 列出指定字段
+
+  insert [into] tbl_name(字段名1,.....) values|value(值1,.....)
+
++ 同时插入多条记录
+
+  insert [into] tbl_name [(字段名1,.....)]  values(值,.....),(值....).....
+
++ 通过set形式插入记录
+
+  insert [into] tbl_name set 字段名称=值,.....
+
++ 将查询结果插入到表中
+
+  insert [into] tbl_name[(字段名称,......)] select 字段名称 from tbl_name[where条件]
+
+2、更新数据
+
+update tbl_name set 字段名称=值,.....[where 条件] [order by  字段名] [limit 限制条数]
+
+3、删除数据
+
+delete from tbl_name [where 条件] [order by 字段名] [limit 限制条数]
+
+删除数据时，带有自增长属性的下次再重新插入值时，会从之前的最大增长值加1，除非重新设置自增长值
+
+彻底清空数据表：truncate [table] tbl_name,不能有where条件
