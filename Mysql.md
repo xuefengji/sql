@@ -326,13 +326,25 @@ select select_expr[,select_expr查询表达式]
  ]
 
 + 查询表达式
+
   + 至少有一列，可以有多列
   + *表示所有字段，table_name.字段为哪个表中的字段
   + 可以使用[as] alias_name为其赋予别名
-+ 条件查询
+
++ where条件查询
+
   + 比较运算符：=、>= 、<=、> 、<、!=、!>、!<、<=>可以检测null值
+
   + 指定范围:between and   / not between and
+
   + 指定集合:in /not in
+
   + 匹配字符串:like \not  like
+
+    %:代表0个一个或多个任意字符串
+
+    _:代表1个任意字符
+
   + 是否为控制: is null \ is not null
+
   + 多个查询条件: and\or 
