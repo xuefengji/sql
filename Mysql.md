@@ -348,3 +348,70 @@ select select_expr[,select_expr查询表达式]
   + 是否为控制: is null \ is not null
 
   + 多个查询条件: and\or 
+
++ 分组查询:group by
+
+  + group by:
+
+    + select * from user group by sex
+    + select * from user group by sex,id  多个条件分组
+
+  + 配合group_concat()得到分组详情
+
+    select proID,group_concat(username)from user group by sex;
+
+  + 配合聚合函数
+
+    + count()
+
+      + count(*)表示统计总记录数
+
+        select proID,group_concat(username),count(*)from user group by sex;
+
+      + count(字段名):不统计null值
+
+    + max()
+
+    + min()
+
+    + avg()
+
+    + sum()
+
+  + 配合with rollup 记录上面的所有记录总和:对分组之后再进行统计
+
+    select proID,group_concat(username),count(*)from user group by sex with rollup;
+
++ having语句对分组结果进行二次筛选
+
+  + 只能再分组之后
+  + select proID,group_concat(username),count(*) from user group by sex having count (*) >2;
+
++ order by:对结果排序
+
+  + desc降序
+
+  + asc升序:默认排序方式
+
+  + 可以使用字段位置进行排序
+
+  + 可以多个字段排序,如果第一个字段值一样会根据其他字段进行排序
+
+  + 随机记录查询,配合rand()函数
+
+    select * from user order by rand();
+
++ limit 限制条数,再更新时只能写一个参数
+
+  + limit 显示条数
+
+    select  * from user limit 10;显示10条
+
+  + limit 偏移量,显示条数
+
+    select  * from user limit 0,1;   第一条偏移量为0,可以实现分页
+
+
+
+2、多表查询
+
