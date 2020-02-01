@@ -356,9 +356,26 @@ select select_expr[,select_expr查询表达式]
 + 分组查询:group by
 
   + group by:
-
     + select * from user group by sex
     + select * from user group by sex,id  多个条件分组
+
+  注意:如果使用group by出现
+
+  ```
+   1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'test.user.id' which i
+   
+   解决办法:
+   1.查看sql_mode:select version(),@@sql_mode
+  mysql> select version(),@@sql_mode;
+  +-----------+-------------------------------------------------------------------------------------------------------------------------------------------+
+  | version() | @@sql_mode                                                                                                                                |
+  +-----------+-------------------------------------------------------------------------------------------------------------------------------------------+
+  | 5.7.27    | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION |
+  2.将ONLY_FULL_GROUP_BY删除:
+  set sql_mode=(select replace(@@sql_mode,‘ONLY_FULL_GROUP_BY’,’’));
+  ```
+
+  
 
   + 配合group_concat()得到分组详情
 
