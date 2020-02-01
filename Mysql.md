@@ -195,10 +195,46 @@ create table [if not exists] tbl_name(字段名 字段类型 [unsigned|zerofill]
 2、如何查看数据库中的数据表以及表结构
 
 + 查看数据表：show tables；
+
 + 查看指定表的结构：
+
   + desc tbl_name
   + describe tbl_name
   + show columns from tbl_name
+
 + 查看创建表时信息：
+
   + show create table 表名
 
++ 修改表名
+
+  + alter table user1 rename to user11；
+
+  + alter table user1 rename as user11；
+
+  + alter table user1 rename user11；
+  + rename table user1 to user10；
+
++ 添加和删除字段
+
+  + 添加:add
+
+    alter table tbl_name add 字段名称 字段类型[约束条件] [first|after 字段名]
+
+  + 删除：drop
+
+    alter table tbl_name drop 字段名
+
+    alter table tbl_name drop 字段名,drop 字段名....：一次删除多个字段
+
++ 修改字段
+
+  alter table tbl_name modify 字段名称 字段类型 [完整性约束] [first|after]
+
++ 修改字段名称
+
+  alter table tbl_name change 旧字段名称 新字段名称 字段类型 [完整性约束] [first|after]
+
++ 添加和删除默认值
+  + alter table tbl_name alter 字段名称 set default 默认值
+  + alter table tbl_name alter 字段名称 drop default 
