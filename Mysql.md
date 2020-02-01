@@ -131,3 +131,32 @@ MyISAM：
 MEMORy：
 
 4、如何选择合适的存储引擎
+
+
+
+#### 数据库表操作
+
+1、如何创建数据表
+
+create table [if not exists] tbl_name(字段名 字段类型 [完整性约束条件])engine=引擎名称 charset=编码方式;
+
+完整性约束条件：
+
++ primary key：主键
+
++ auto_increment：自增长
++ foreign key：外键
++ not null：非空
++ unique key：唯一
++ default：默认值
+
+
+
+2、如何查看数据库中的数据表以及表结构
+
++ 查看数据表：show tables；
++ 查看指定表的结构：
+  + desc tbl_name
+  + describe tbl_name
+  + show columns from tbl_name
+
