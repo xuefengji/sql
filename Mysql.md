@@ -302,3 +302,37 @@ delete from tbl_name [where 条件] [order by 字段名] [limit 限制条数]
 删除数据时，带有自增长属性的下次再重新插入值时，会从之前的最大增长值加1，除非重新设置自增长值
 
 彻底清空数据表：truncate [table] tbl_name,不能有where条件
+
+
+
+#### 查询数据操作DQL
+
+1、单表查询：
+
+select select_expr[,select_expr查询表达式] 
+
+[from tbl_name 
+
+[where 条件]
+
+ [group by {col_name|position} [asc|desc],....分组]
+
+[having 条件 对分组结果二次筛选]
+
+[order by {col_name|position} [asc|desc],......排序]
+
+[limit 限制显示条数]
+
+ ]
+
++ 查询表达式
+  + 至少有一列，可以有多列
+  + *表示所有字段，table_name.字段为哪个表中的字段
+  + 可以使用[as] alias_name为其赋予别名
++ 条件查询
+  + 比较运算符：=、>= 、<=、> 、<、|、|>、|<、<>
+  + 指定范围:between and   / not between and
+  + 指定集合:in /not in
+  + 匹配字符串:like \not  like
+  + 是否为控制: is null \ is not null
+  + 多个查询条件: and\or
