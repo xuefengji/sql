@@ -554,3 +554,81 @@ select select_expr[,select_expr查询表达式]
 
   create table [if not exists] tbl_name [(create_definition,....)] select .....
 
+
+
+5、正则表达式查询
+
++ regexp的匹配方式
+
+  select * from user where username regexp '^t';
+
++ 常用匹配方式
+
+  ```
+  模式字符                       含义
+  ^                            匹配字符的开始部分
+  $                            匹配字符的结尾部分
+  .                            代表字符串中的任意一个字符，包括回车和换行
+  [字符集合]                     匹配字符集合中的任意一个字符
+  [^字符集合]                   匹配除了字符集合以外的任意一个字符
+  s1|s2|s3                    匹配s1、s2、s3中任意一个字符
+  *                           代表0个、1个或多个其前的字符
+  +                           代表1个或多个其前的字符
+  string{N}                   字符串出现n次
+  字符串{M,N}                  字符串至少出现M次，最多N次
+  ```
+
+  
+
+
+
+6、mysql中的运算符使用
+
++ 算术运算符
+
+  + +、-、*、/（除数为0时，结果为null）、div（除法，x1 div x2）
+  + %取余、mod（取余，mod(x1，x2)）
+
++ 比较运算符
+
+  + < 、> 、!=、.....
+  + is null /is notnull
+  + between and
+  + in /not in
+  + like / not like
+  + regexp
+
++ 逻辑运算符
+
+  + &&/and
+  + ||/or
+  + ！/not：取反
+  + xor：异或
+
++ 运算符的优先级
+
+  ```
+  优先级       运算符
+  1           ！
+  2           ~
+  3           ^
+  4           *、/、div、%、mod
+  5           +、-
+  6           >>、<<
+  7           &
+  8           |
+  9           =、<=>、<、>...、in、is null、like、regexp
+  10          between and、case、when、then、else
+  11          not
+  12          &&、and
+  13          ||、or、xor
+  14          ;=
+  ```
+
+  可以通过()改变优先级
+
+
+
+7、数据函数库
+
++ 
