@@ -367,7 +367,7 @@ select select_expr[,select_expr查询表达式]
 
   ```
   Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'test.user.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
-   出错原因:5.7版本中默认以only_full_group_by sql模式,也就是select后的查询表达式只能是group by后面的或由聚合函数得到的
+   出错原因:5.7版本中默认以only_full_group_by sql模式(sql严格模式),也就是select后的查询表达式只能是group by后面的或由聚合函数得到的
    
    解决办法:
    1.查看sql_mode:select version(),@@sql_mode
@@ -376,6 +376,7 @@ select select_expr[,select_expr查询表达式]
   | version() | @@sql_mode                                                                                                                                |
   +-----------+-------------------------------------------------------------------------------------------------------------------------------------------+
   | 5.7.27    | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION |
+  
   2.将ONLY_FULL_GROUP_BY删除:
   set sql_mode=(select replace(@@sql_mode,‘ONLY_FULL_GROUP_BY’,’’));
   ```
@@ -465,14 +466,41 @@ select select_expr[,select_expr查询表达式]
 
 + 外键:保证数据的一致性和完整性
   + 参照已有表的主键,将主表与子表建立关联关系,父表对记录进行操作时,子表中与之对应的信息也应有相应的改变
+  
   + 可以实现一对一或一对多的关系
+  
   + 注意:
     + 父子表应该使用相同的存储引擎,而且禁止使用临时表
     + 存储引擎只能为Innodb
     + 外键列和参照列必须创建索引,如果外键列不存在索引,mysql会自动创建索引列
     + 外键列和参照列必须具有相似的数据类型,其中数字的长度或是否有符号位必须相同,而字符的长度可以不同
+    
   + 外键约束的参照操作
     + cascade:从父表删除或更新且自动删除或更新子表中匹配的行
+    
+      forioreign key (字段名) references 参照的表名(参照表的字段名) on delete|on update cascade
+    
     + set null:从父表删除或更新,并设置子表中的外键列位null.如果使用该选项,必须保证子表列没有指定not null
     + restrict:拒绝对父表的删除或更新操作
     + no action:标准SQL的关键字,再Mysql中与restrict相同
+    
+  + 添加删除外键
+  
+    + 添加：
+  
+      + forioreign key (字段名) references 参照的表名(参照表的字段名) ：没有指定外键名称mysql会自动创建外键名称
+  
+      + constraint 外键别名  foreign key (字段名) references 参照的表名(参照表的字段名) 
+  
+      + 动态添加：
+  
+        alter table tbl_name add constraint 外键名称 forioreign key (字段名) references 参照的表名(参照表的字段名)
+  
+    + 删除
+  
+      alter table tbl_name drop   forioreign key  外键名称
+
+
+
+3、联合查询
+
