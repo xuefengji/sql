@@ -37,3 +37,76 @@
     mysql -u root -p companys < 刚保存的文件
 
     导入数据时需要在数据文件中，加入set names 'utf8';
+
+
+
+2、会话变量和全局变量
+
++ 会话变量
+  + 查看会话变量
+
+    show session variables like 'auto%'或select @@session.autocommit
+
+  + 设置变量值
+
+    set autocommit = ‘off’；或 set @@session.autocommit = 'utf8';
+
+    设置的值只对当前会话有效
+
++ 全局变量
+
+  + 查看全局变量
+
+    show global variables like 'auto%';或select @@global.autocommit
+
+  + 设置全局变量
+
+    set global autocommit = 'utf8'或 set @@global.autocommit = 'utf8';
+
+    设置的值对所有用户有效
+
+
+
+3、存储过程的创建
+
++ 什么是存储过程
+
+  常用的sql语句在执行时需要先编译，在执行，而存储过程是一组为了完成特定功能的sql语句集，经编译后存储在数据库中，用户通过指定存储过程的名字并给定参数（如果有参数）来调用执行。
+
+  优点：
+
+  + 增强了sql语言的功能和灵活性，可以用流程控制语句的编写，有很强的灵活性，可以完成复杂的判断和较复杂的运算
+  + 允许标准组件式编程。存储过程被创建后，可以在程序中被多次调用，不必重新编写sql语句，数据库专业人员可以随时对存储过程进行修改，对应用程序源代码毫无影响
+  + 存储过程能实现较快的执行速度。如果一台操作包含大量的transaction-sql代码或分别被多次执行，那么存储过程要比批处理的执行速度快很多。存储过程时预编译的，在首次运行一个存储过程时查询，优化器对其进行分析优化，并给出最终被存储在系统表中的执行计划，而大量的transaction-sql在执行时都要进行编译和优化，速度比较慢
+  + 存储过程能减少网络流量
+  + 可被作为一种安全机制来充分利用
+
++ 创建存储过程
+
+  + 选中一个数据库
+
+    use 数据库名
+
+  + 改变分隔符，不让；作为执行结束的标记
+
+    delimiter $$ ;
+
+  + 创建
+
+    create procedure p_hello(存储过程名称)()
+
+     begin
+
+    select 'hello';
+
+    select 'world';
+
+    end
+
+    $$;
+
+  + 改变分隔符 delimiter ;
+
+  + 调用存储过程
+
+    call  p_helo;
