@@ -504,3 +504,19 @@ select select_expr[,select_expr查询表达式]
 
 3、联合查询
 
++ 查询的字段数要相同
+
++ union：会去掉相同的记录
+
+  select username from employee union select username from cms_user；
+
++ union all：简单的合并到一起
+
+  select username from employee union all select username from cms_user；
+
+
+
+4、子查询
+
+子查询：将一个查询语句嵌套在另一个查询语句中，内层查询语句的查询结果可以为外层查询语句提供条件
+
