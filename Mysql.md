@@ -695,8 +695,28 @@ select select_expr[,select_expr查询表达式]
 + 条件判断函数
 
   ```
-  
+  名称                         描述
+  if(expr,v1,v2)              如果表达式expr成立，返回结果v1，否则返回v2
+  ifnull(v1,v2)               如果v1的值部位空，就显示v1的值，否则显示v2
+  case when exp1 then v1      case表示函数开始，end表示函数结束。如果表达式
+  [when exp2 then v2]         exp1成立时，返回v1。如果表达式exp2成立时，返回
+  [else vn]                   v2的值，依此类推，最后遇到else时，返回vn的值
+  end
   ```
 
-  
++ 系统信息函数
+
+  ```
+  名称                            描述
+  version()                      返回数据库的版本号
+  connection_id()                返回服务器的连接数
+  database(),schema()            返回当前数据库名
+  user(),system_user()           返回当前用户
+  current_user(),current_user    返回当前函数
+  charset(str)                   返回字符串str的字符集
+  collation(str)                 返回字符串str的校验字符集
+  last_insert_id()               返回最近生成的auto_increment值
+  ```
+
++ 
 
