@@ -518,5 +518,39 @@ select select_expr[,select_expr查询表达式]
 
 4、子查询
 
-子查询：将一个查询语句嵌套在另一个查询语句中，内层查询语句的查询结果可以为外层查询语句提供条件
++ 子查询：将一个查询语句嵌套在另一个查询语句中，内层查询语句的查询结果可以为外层查询语句提供条件
+
++ 子查询的情况：
+
+  + 由[not] in引发的子查询
+
+    select username from user where in(select ........)
+
+  + 通过比较运算符引发的子查询
+
+    select username from user where score>=(select ........)
+
+  + 使用[not] exists引发的子查询
+
+    select username from user where exists(select ........)
+
+  + 使用any|some或all引发的子查询
+
+    ```
+    关键字           any            some            all
+    >、>=           最小值          最小值           最大值
+    <、<=           最大值          最大值           最小值
+    =               任意值          任意值             
+    <>、!=                                         任意值
+    ```
+
+    select username from user where score>=any|some(select ........)
+
++ 将查询结果写入数据表中
+
+  insert [into] tbl_name [(col_name,.....)] select.......
+
++ 创建数据表同时将查询结果写入到数据表
+
+  create table [if not exists] tbl_name [(create_definition,....)] select .....
 
