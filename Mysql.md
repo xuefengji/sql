@@ -631,4 +631,72 @@ select select_expr[,select_expr查询表达式]
 
 7、数据函数库
 
-+ 
++ 数学函数
+
+  ```  
+  名称              描述
+  ceil()          进一取整
+  floor()         舍一取整
+  mod             取余数
+  power()         幂运算
+  round()         四舍五入
+  truncate()      数字截取
+  abs()           取绝对值
+  pi()            圆周率
+  rand()/rand(x)  返回0-1之间随机数
+  sign(x)         返回x的符号，x为负数返回-1，0返回0，正数返回1
+  exp(x)          计算e的几次方
+  ```
+
++ 字符串函数
+
+  ```
+  名称                      描述
+  char_length(s)           返回字符串的字符数
+  length                   返回字符串的长度
+  concatenate（s1，s2）     将指定字符串合并为一个字符串
+  concat_ws(x，s1，s2）     以指定分隔符连接字符串
+  upper（s）/ucase(s)       将字符串转换为大写
+  lower(s)/lcase(s)        将字符串转换为小写
+  left(s,n)/right(s,n)     返回字符串的前/后那个字符
+  lpad(s1,len,s2)/rpad(s1,len,s2)   将字符串s1用s2 填充到指定len
+  ltrim(s)/rtrim(s)/trim(s)   去掉字符串中的空格
+  trim(s1 from s)          去掉字符串s中开始和结尾处的字符串s1
+  repeat(s,n)              重复字符串指定次数
+  space(n)                 返回n个空格
+  replace(s,s1,s2)         将字符串s中的s1替换成s2
+  strcmp(s1,s2)            比较字符串>=<分别返回1，0，-1
+  substring(s,n,len)       截取字符串
+  reverse(s)               反转字符串
+  elt(n,s1,s2....)         返回指定位置的字符串
+  
+  ```
+
++ 日期时间函数
+
+  ```
+  名称                                      描述
+  curdate(),current_date()                 返回当前日期
+  curtime(),current_time()                 返回当前时间
+  now()                                    返回当前日期和时间
+  month(d)                                 返回日期中月份的值
+  monthname(d)                             返回日期中月份的名称
+  dayname(d)                                返回日期是几，monday
+  dayofweek(d)                             返回一周内的第几天，1代表星期日
+  weekday(d)                               返回日期是星期几，0代表星期一
+  week(d)                                  一年中的第多少个星期
+  year(d)                                 返回年份值
+  hour(t)                                 返回小时值
+  minute(t)                               返回分钟值
+  second(t)                               返回秒数
+  datediff(d1,d2)                         计算2个日期之间相隔的天数
+  ```
+
++ 条件判断函数
+
+  ```
+  
+  ```
+
+  
+
