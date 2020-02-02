@@ -718,5 +718,71 @@ select select_expr[,select_expr查询表达式]
   last_insert_id()               返回最近生成的auto_increment值
   ```
 
-+ 
++ 加密函数
 
+  ```
+  名称                            描述
+  MD5(str)                       信息摘要算法
+  password(str)                  密码算法
+  encode(str,pwd_str)            加盟结果是一二进制数，必须使用blob类型字段保存
+  decode(crypt_str,pwd_str)      对通过encode加密之后的内容解密
+  ```
+
++  其他常用函数
+
+  ```
+  名称                             描述
+  format(x,n)                     将数字x进行格式化，将x保留到小数点后n位
+  ascll(s)                        返回字符串s的第一个字符的ascll码
+  bin(x)                          返回x的二进制编码
+  hex(x)                          返回x的十六进制编码
+  oct(x)                          返回x的八进制编码
+  conv(x,f1,f2)                   将x从f1进制数变成f2进制数
+  inet_aton(ip)                   将IP地址转换为数字
+  inet_ntoa(n)                    将数字转换成IP地址
+  get_loct(name,time)             定义锁
+  release_lock(name)              解锁
+  ```
+
+
+
+8、索引的使用
+
++ 什么是索引
+
+  + 索引由数据库中一列或多列组合而成，其作用是提高对表中数据的查询速度
+  + 其优点是可以提高检索数据的速度
+  + 缺点是创建和维护索引需要耗费时间
+  + 可以提高查询速度，会减慢写入速度
+
++ 索引的分类
+
+  + 普通索引
+  + 唯一索引
+  + 全文索引
+  + 单列索引
+  + 多列索引
+  + 空间索引：必须是空间类型 geometry，且该空间类型必须不为空
+
++ 索引创建
+
+  + 创建表时创建
+
+    create table tbl_name(字段名称 字段类型[完整性约束条件]，
+
+    ....,
+
+    [unique|fulltext|spatial] index|key [索引名称] (字段名称 [( 长度)] [asc|desc])
+
+    )  
+
+  + 在已存在的表上创建索引
+
+    + create [unique|fulltext|spatial] index 索引名称 on 表名 {字段名[(长度)] [asc|desc]}
+    + alter table tbl_name add [unique|fulltext|spatial] index 索引名称(字段名称[(长度)] [asc|desc])
+
++ 删除索引
+
+  drop index 索引名称 on tbl_name
+
+  alter table tbl_name drop index 索引名称
