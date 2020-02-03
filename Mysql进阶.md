@@ -110,3 +110,49 @@
   + 调用存储过程
 
     call  p_helo;
+    
+  + 定义变量
+  
+    + create procedure p_hello(存储过程名称)()
+  
+       begin
+  
+      declare 变量名 数据类型 [default 默认值]
+  
+      end
+  
+    + create procedure p_hello(存储过程名称)()
+  
+       begin
+  
+      declare 变量名 数据类型 
+  
+      set 变量名=值
+  
+      end
+  
+    + 参数
+  
+      + in：输入参数，必须在调用存储过程前指定，在存储过程中修改的值不能被返回。调用存储过程的时候，会copy一份参数的值给存储过程使用
+  
+        create procedure p_hello(存储过程名称)(in 参数名  参数类型)
+  
+         begin
+  
+        有参数的存储过程在调用前 需要先设置参数值
+  
+        set @参数名 = 值
+  
+        call 存储过程名称(@参数名)
+  
+      + out：输出参数：可在存储过程内部改变，并返回
+  
+        
+  
+      + inout：输入输出参数，可在调用时指定，并可修改和返回
+  
+        
+  
+      
+  
+  
