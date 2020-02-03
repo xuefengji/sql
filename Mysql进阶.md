@@ -201,5 +201,25 @@
 
   + repeat
 
+    repeat 
+
+    ​	内容 
+
+    ​	until 条件    //循环退出条件
+
+    end repeat；
+
   + loop
+
+    loop名字：loop
+
+    ​	内容
+
+    if 条件 then
+
+    ​	leave loop名字；
+
+    end if；
+
+    end loop；
 
