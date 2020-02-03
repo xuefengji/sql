@@ -259,3 +259,70 @@
 
     end loop；
 
+5、函数创建
+
++ 查看是否已经开启了创建函数的功能
+
+  show variables like '%fun%';
+
++ 如果变量的值为off，需要开启
+
+  set global log_bin_trust_function_creators = 1；
+
++ 创建函数的语法
+
+  create function 函数名(变量1，变量2.......)
+
+  returns  数据类型
+
+  begin
+
+  ​	......执行的程序代码
+
+  return 数据；
+
+  end；
+
+
+
+6、视图创建
+
++ 什么是视图
+
+  视图是由查询结果形成的一张虚拟表
+
++ 什么时候要用到视图
+
+  如果某个查询结果出现的非常频繁，也就是，要经常拿这个查询结果来做子查询
+
++ 使用视图的好处
+
+  + 简化查询语句
+
+    案例：比如求每个人的平均工资
+
+  + 可以进行权限控制
+
+    把表的权限封闭，但是开放相应的视图权限，视图里只开放部分数据列
+
+    比如把员工的工资表的权限关闭，但是开放查询员工发放工资的次数的权限
+
+  + 大数据表分表的时候
+
+    比如某张表的数据有100万条，那么可以将这张表分成4个视图
+
++ 创建视图语法
+
+  create [or replace] [algorithm ={undefined|merge|temptable}]
+
+  view view_name [(column_list)]
+
+  as select_statement
+
+  [with [cascaded|local] check option]
+
+  如果给定了or replace子句，该语句还能替换已有的视图。select_statement是一种select语句，它给出了视图的定义。该语句可从基表或其他视图进行选择。
+
++ 视图的管理
+
+  
