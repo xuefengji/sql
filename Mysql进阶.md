@@ -133,7 +133,7 @@
   
     + 参数
   
-      + in：输入参数，必须在调用存储过程前指定，在存储过程中修改的值不能被返回。调用存储过程的时候，会copy一份参数的值给存储过程使用
+      + in：输入参数，必须在调用存储过程前指定，在存储过程中修改的值在调用结束后不能被返回，只会返回调用之前设置的值。调用存储过程的时候，会copy一份参数的值给存储过程使用
   
         create procedure p_hello(存储过程名称)(in 参数名  参数类型)
   
@@ -147,12 +147,59 @@
   
       + out：输出参数：可在存储过程内部改变，并返回
   
-        
+        在调用存储过程之前设置的值，调用时查询显示为null，只会显示在存储过程中设置的值
   
       + inout：输入输出参数，可在调用时指定，并可修改和返回
   
+        调用之前设置的值，在存储过程被改变后，调用结束，显示的是改变后的值
+  
         
-  
-      
-  
-  
+
+4、控制流程
+
++ if...else..
+
+  if search_condition then statement_list
+
+  [elseif search_condition then statement_list]....
+
+  [else statement_list]
+
+  end if
+
++ case分支
+
+  case  case_value 
+
+  when when_value then statement_list
+
+  [when when_value then statement_list].....
+
+  [else statement_list]
+
+  end case
+
+  其中，case_value表示条件判断的变量
+
+  when_value表示变量的取值
+
+  statement_list表示
+
++ ifnull(exp1,exp2)
+
+  如果exp1是空值，显示的是exp2值，如果不是空值，显示的是exp1值
+
++ 循环语句
+
+  + while循环
+
+    while 条件 do
+
+    ​	内容
+
+    end while；
+
+  + repeat
+
+  + loop
+
