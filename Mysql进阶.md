@@ -159,7 +159,37 @@
 
   declare continue handler for sqlstate '错误代码值' set 变量=变量值
 
++ 存储过程管理
 
+  + 查看存储过程
+
+    show procedure status where db=’数据库‘;
+
+  + 查看当前数据库下的存储过程列表
+
+    select specific_name from mysql.proc;
+
+  + 查看存储过程内容
+
+    select specific_name,body from mysql.proc;
+
+    或show create procedure 存储过程名字
+
+  + 删除存储过程
+
+    drop procedure if exists 存储过程名称；
+
+  + 修改存储过程
+
+    alter {procedure| function} 存储过程名称 [characteristic....]
+
+    characteristic:
+
+    {condition sql | no sql：表示子程序不包含sql语句|reads sql data：表示子程序中包含读数据的语句|modifies sql data：表示子程序中包含写数据的语句} |
+
+    sql security {definer表示只有定义者才能执行|invoker表示调用者可以执行} :指明权限|
+
+    comment 'string'：表示注释信息
 
 4、控制流程
 
