@@ -325,4 +325,68 @@
 
 + 视图的管理
 
-  
+  + 视图的存放位置
+
+    存放在information_schema数据库下的views表里
+
+  + 视图的算法
+
+    + merge
+
+      合并的执行方式，每当执行的时候，先将我们视图的sql语句与外部查询视图的sql语句，混合在一起，最终执行
+
+    + temptable
+
+      临时表模式，每当查询的时候，将视图所使用的select语句生成一个结果的临时表，再在当前的临时表内进行查询
+
+      指的是一个视图在什么时候执行，依据哪些方式执行
+
+      对应merge，会将引用视图的语句的文本与视图定义合并起来，使得视图定义的某一部分取代语句的对应部分
+
+      对于temptable，视图的结果将被置于临时表中，然后使用它执行语句
+
+      对于undefined，MySQL将选择所要使用的算法，如果可能，它倾向于merge而不是temptable，这是因为merge通常更有效，如果使用了临时表，视图是不可更新
+
+  + 视图管理
+
+    + 查看视图定义
+
+      show table  status [from 数据库名称] [like '匹配']；
+
+    + 删除视图
+
+      drop view [if exists] view_name [restrict|cascade]
+
+      只能删除视图的定义，不能删除数据，必须有drop权限
+
+    + 查看权限
+
+      select Drop_priv from mysql.user where user='root';
+
+    + 删除视图
+
+      drop view if exists worker_view1;
+
+      删多个：
+
+      drop view if exists department_view1,department_view2;
+
+    + 视图数据更新问题
+
+      某些视图是可更新的，在诸如update】delete或insert等语句中使用它们，以更新基表的内容。对于可更新的视图，在视图中的行和基表中的行之间必须具有一对一的关系。还有一些特定的其他结构，这些结构会使得视图不可更新，如下：
+
+      + 聚合函数：sum、min、max、count等
+      + distinct
+      + group by
+      + having
+      + union 或union all
+      + 位于选择列表中的子查询
+      + join
+      + from字句中的不可更新视图
+      + where字句中的子查询，引用from字句中的表
+      + 仅引用文字值，该情况下没有必要更新基表
+      + algorithm=temptable
+
+    + 关于with check option的理解及应用
+
+      更新视图，更新的数据必须要满足视图的条件，才能更新到基表中
