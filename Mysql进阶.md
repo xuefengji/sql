@@ -390,3 +390,76 @@
     + 关于with check option的理解及应用
 
       更新视图，更新的数据必须要满足视图的条件，才能更新到基表中
+
+7、触发器
+
++ 什么是触发器
+
+  是一种特殊的存储过程，它在插入、删除或修改特定表中的数据时触发执行，比数据库本身标准的功能有更精细和更复杂的数据控制能力
+
++ 特性
+
+  监视地点：一般就是表名
+
+  监视时间：update/insert/delete
+
+  触发时间：after/before
+
+  触发事件：update/insert/delete
+
+  注意：不能被直接调用，是由数据库主动去执行
+
++ 创建语法
+
+  create trigger trigger_name trigger_time trigger_event on tbl_name for each row trigger_stmt(begin ......)
+
+  tbl_name:必须是永久性表，不能将触发程序与temporary表或视图关联
+
+  trigger_time:是触发程序的动作事件，可以是before或after，以指明触发程序是在激活它的语句之前或之后触发
+
+  trigger_event：指明了激活触发程序的语句类型，可以是以下：
+
+  insert：将新行插入表时激活触发程序，如：insert、load data 和replace语句
+
+  update：更改某一行时激活，如update
+
+  delete：从表中删除某一行时激活，如delete和replace
+
+  注意：trigger_event与表操作方式激活触发程序的sql语句并不很类似，如：
+
+  关于insert的before触发程序不仅能被insert语句激活，也能被load data语句激活
+
+  特别说明：
+
+  1、对于insert而言，新插入的行用new来表示，行中的每一列的值用new.列名来表示
+
+  2、对于delete而言，原本由一行后被删除，想引用被删除的这一行，用old表示，old.列名可以引用被删除的行的值
+
+  3、对于update而言，被修改的行在被修改前的数据用old表示，old.列名引用被修改之前行中的值，修改后的数据用new表示，new.列名引用被修改之后行中的值
+
++ 触发器管理：
+
+  + 查看所有触发器
+
+    show triggers;
+
+  + mysql中有一个information_schema.triggers表，存储所有库中的所有触发器，desc information_schema.trigger可以查看触发器结构
+
+  + 查看触发器名字
+
+    select * from information_schema.trigger where trigger_name ='触发器名字'\G;
+
+  + 删除触发器
+
+    drop trigger [schema_name.]trigger_name;
+
+
+
+8、sql锁
+
+不同的引擎支持不同的锁：MyISAM 和memory采用的是表级锁；bdb采用的是页面锁，也支持表级锁；Innodb支持行级锁，也支持表级锁，但默认情况下采用的是行级锁
+
+mysql3种锁的特性：
+
+表级锁：开销小、加锁快，不会出现死锁，锁定力度大，发生锁冲突的概率最高，并发度最低
+
