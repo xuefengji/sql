@@ -780,6 +780,8 @@ select select_expr[,select_expr查询表达式]
 
     + create [unique|fulltext|spatial] index 索引名称 on 表名 {字段名[(长度)] [asc|desc]}
     + alter table tbl_name add [unique|fulltext|spatial] index 索引名称(字段名称[(长度)] [asc|desc])
+  + 全文索引查询
+    select * from tbl_name where match(要查询的列名) against（'查询匹配的字符'）
 
 + 删除索引
 
