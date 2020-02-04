@@ -579,3 +579,49 @@
 
 
 
+10、慢查询
+
++ 什么是慢查询
+
+  mysql记录下查询超过指定时间的语句，将超过指定时间的sql语句查询称为慢查询
+
++ 查看慢查询
+
+  + show variables like '%long%’
+
+    结果超过10秒，表示慢查询
+
+  + 查询mysql启动时间
+
+    show status like 'uptime%''
+
+  + 查询select语句个数
+
+    show status like 'com_select'
+
+  + 查询当前连接数
+
+    show status like 'connections'
+
+  + 查看慢查询
+
+    show status like 'slow_quries'，慢查询时间默认为10秒
+
++ 启动慢查询
+
+  + 以安全模式启动mysql服务（要设置mysqld环境变量）
+
+    mysqld.exe --safe-mode --show-query-log
+
+  + 开启慢查询日志
+
+    在mysql的配置文件中加入以下参数
+
+    log-slow-queries=d:/mysql/log/mysqld-slow-query.log //指定日志存放路径，该目录要有写的权限
+
+    long-query-time= 5     //设置慢查询时间
+
+    log-queries-not-using-indexex  //没有使用索引查询记录也会被记录
+
+
+
