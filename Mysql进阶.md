@@ -518,7 +518,57 @@
 
   
 
+9、事务
 
++ 查看数据库数据库是否支持事务
+
+  show engines  ：InnoDB支持
+
++ 查看mysql当前默认的存储引擎
+
+  show variables like '%storage_engine%';
+
++ 查看某张表的存储引擎
+
+  show create table 表名
+
++ 修改表的存储结构
+
+  建立表：create table..... type=InnoDB
+
+  alter table tbl_name type=InnoDB
+
++ 创建事务
+
+  set autocommit= 0//将自动提交关闭，否则对update、insert等更新数据的操作会自动提交
+
+  start transaction 
+
+  commit //提交
+
+  commit and chain：提交事务后重新开启新的事务
+
++ 事务回滚
+
+  回到事务发生之前的数据状态，通过rollback
+
+  rollback and release ：表示事务回滚之后断开和客户端的连接
+
++ 还原点
+
+  set autocommit= 0
+
+  update.....
+
+  savepoint s1//表示记录位置
+
+  insert.....
+
+  savepoint s2
+
+  当要回滚时可以指定位置进行回滚
+
+  rollback to savepoint s1
 
 
 
