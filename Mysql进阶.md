@@ -623,5 +623,33 @@
 
     log-queries-not-using-indexex  //没有使用索引查询记录也会被记录
 
+11、索引
 
++ 创建索引会占用一定的磁盘空间，所以索引不是越多越好
+
++ 以下场景会使用索引
+
+  + 快速查找符合where条件的记录
+  + 快速确定候选集。若where条件使用了多个索引字段，则mysql会优先使用能使候选记录集规模最小的那个索引，以便尽快淘汰不符合条件的记录
+  + 如果表中存在几个字段构成的联合查询索引，则查找记录时，这个联合索引的最左前缀字段也会被自动作为索引来加速查找
+
++ 对于经常查询的字段创建索引，会提高查询速度
+
++ 通过show profile分析sql
+
+  + 首先查看mysql是否支持show profile
+
+    select @@have_profiling
+
+  + 如果profiling是关闭的，可使用set在session级别开启profiling
+
+    set profiling = 1；
+
+  + 执行完毕后，使用show profiles语句查看当前sql的query id
+
+  + 通过show profile for query query ID
+
+
+
+12、表的优化
 
