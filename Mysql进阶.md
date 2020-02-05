@@ -663,5 +663,17 @@
 
   check table也可以检查视图是否有错误，比如在视图中被引用的表已不存在
 
-+ 
++ 定期优化表
+
+  optimize [local|no_write_to_binlog] table tbl_name [,tbl_name]
+
+  optimize table 只对MyISAM、BDB、InnoDB表起作用
+
+  对于MyISAM表，optimize table按如下方式操作：
+
+  + 如果表已经删除或分解了行，则修复表
+  + 如果未对索引页进行分类，则进行分类
+  + 如果表的统计数据没有更新(并且通过对索引进行分类不能实现修复)，则进行更新
+
+  注意：需要注意的是无论是analyze，check还是optimize在执行期间将对表进行锁定，因此要注意这些操作要在数据库不繁忙的时候执行
 
