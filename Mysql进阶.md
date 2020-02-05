@@ -964,3 +964,32 @@
 
 19、mysql备份和还原
 
++ 备份
+
+  + 使用mysqldump命令
+
+    原理：将表结构导出，在文件中创建create语句，将表中的数据记录转换成insert语句
+
+    + 备份指定的表
+
+      mysqldump -u username -p dbname table1 table2......>backupname.sql
+
+    + 备份多个数据库
+
+      mysqldump -u username -p --datebases dbname1 dbname2......>backupname.sql
+
+    + 备份所有数据库
+
+      mysqldump -u username -p --all-databases>backupname.sql
+
+  + 直接复制整个数据库目录
+
+  + 使用mysqlhotcopy工具快速备份
+
++ 还原
+
+  + 还原使用mysqldump命令备份的语法：
+
+    mysql -u root -p [dbname] < backup.sql
+
+  + 还原直接复制目录的备份
