@@ -677,6 +677,8 @@
 
   注意：需要注意的是无论是analyze，check还是optimize在执行期间将对表进行锁定，因此要注意这些操作要在数据库不繁忙的时候进行操作
 
++ show table status ：查看表信息
+
 
 
 13、mysql分区
