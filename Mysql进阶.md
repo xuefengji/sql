@@ -699,7 +699,7 @@
 
     基于属于一个给定连续区域间的列值，把多行分配给分区
 
-    partition by range(字段名)（
+    partition by range(字段名//是连续的值)（
 
     partition p0 values less than（6），
 
@@ -717,15 +717,41 @@
 
     类似于按range分区，区别在于list分区是基于列值匹配一个离散值集合中的某个值来进行选择
 
+    partition by list(字段名//是离散的集合)（
+
+    partition p0 values in（6，9，17，24），
+
+    partition p1 values in（11，15，17，18）........
+
+    ）
+
+    当使用字符串类型的值作为分区的字段：
+
+    partition by list columns（字段名）
+
   + hash分区
 
     基于用户定义的表达式的返回值来进行选择的分区，该表达式使用将要插入到表中的这些行的列值进行计算。这个函数可以包含mysql中有效的、产生非负数整数值的任何表达式
+
+    partition by hash（字段名）
+
+    partitions 4
 
   + key分区
 
     类似于按hash分区，区别在于key分区只支持计算一列或多列，且mysql服务器提供其自身的哈希函数，必须有一列或多列包含数值列
 
-  
+    partition by linear key（字段名,[字段名...]）
+
+    partitions 3
+
+  + 删除分区
+
+    alter table tbl_name drop partition 分区名
+
+  + 为range或list增加一个分区
+
+    alter table tbl_name add partition(partition 分区名 values less than（某个具体的值）)
 
   
 
