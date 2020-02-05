@@ -792,3 +792,26 @@
   + 调整thread_cache_size，加快连接数据库的速度，mysql会缓存一定数量的客户服务线程以备用，通过参数thread_cache_size可控制mysql缓存客户服务线程的数量
   + innodb_lock_wait_timeout，控制innodb事务等待行锁的时间，对于快速处理的sql语句，可以将行级锁的等待超时时间调小，以避免事务长时间挂起，对于后台运行的批处理操作，可以将行锁等待超时时间调大，以避免发生大的回滚操作。 
 
+
+
+15、mysql应用程序优化
+
++ 访问数据库采用连接池
+
+  存放连接对象
+
++ 采用缓存减少对mysql的访问
+
+  + 避免对统一数据做重复检索
+  + 使用查询缓存
+  + 缓存参数的配置
+    + 查看缓存是否打开：show variables query_cache_type
+      + off：关闭
+      + on：总是打开
+      + demand：只有明确写了sql_cache的查询才会吸入缓存
+    + query_cache_size：缓存使用的总内存空间大小，单位是字节，这个值必须是1024的整数倍，否则mysql实际分配可能跟这个数值不同
+    + query_cache_min_res_unit：分配内存块时的最小单位
+    + query_cache_limit：mysql能够缓存的最大结果，如果超出，则增加qcache_not_cached的值，并删除查询结果
+    + query_cache_wlock_invalidate：如果某个数据表被锁住，是否仍然从缓存中返回数据，默认时off，表示仍然可以返回
+
++ 使用负载均衡
