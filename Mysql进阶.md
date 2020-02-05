@@ -653,3 +653,15 @@
 
 12、表的优化
 
++ 定期分析表：
+
+  analyse [local|no_write_to_binlog]  table tbl_name [,tbl_name]
+
++ 定期检查表
+
+  check table tbl_name [,tbl_name] [option]
+
+  check table也可以检查视图是否有错误，比如在视图中被引用的表已不存在
+
++ 
+
