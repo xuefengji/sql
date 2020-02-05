@@ -815,3 +815,119 @@
     + query_cache_wlock_invalidate：如果某个数据表被锁住，是否仍然从缓存中返回数据，默认时off，表示仍然可以返回
 
 + 使用负载均衡
+
+
+
+16、mysql权限管理
+
++ 作用和意义
+
+  mysql权限系统主要用来对连接到数据库的用户进行权限的验证，以此判断此用户是否属于合法的用户，如果是合法的用户，如果是合法用户则赋予相应的数据库权限
+
++ 查看当前数据库用户
+
+  use mysql
+
+  select host,user,password from user;
+
++ mysql权限应用
+
+  + 添加账号并赋予权限
+
+    grant  select *. * to zy@localhost indentified by 密码 with grant option
+
+    select：查询的权限，操作权限为 all privilages 
+
+    *：表示任意数据库
+
+    *：表示任意表
+
+    zy：账号名  local host：数据库地址，可以是IP地址
+
+    + 重新赋予权限
+
+      先revoke select *. * from zy@localhost
+
+      grant  select，delete *. * to zy@localhost indentified by 密码 with grant option
+
+  + 查看用户的权限
+
+    show grants for 'root'@'localhost'
+
+  + 删除用户
+
+    drop user 'zy'@'localhost';删除用户和用户的权限
+
+    delete只能删除用户，不能删除权限
+
+  + 修改账号密码
+
+    set password for ‘账号名’@‘local host’=password（新密码）
+
+  + 对账号权限的资源配置
+
+    例如：
+
+    grant  select *. * to zy@localhost indentified by 密码 with max_queries_per_hour 5  max_user_connections 6
+
+    max_queries_per_hour：每小时查询次数
+
+    max_user_connections：最大连接数
+
+
+
+17、mysql监控
+
++ 为什么要mysql监控
+
+  随着软件后期的不断升级，mysql的服务器数量越来越多，软硬件发生故障的频率也越来越高，这就需要监控系统来监控，当主机发生异常，可通过监控系统发现和处理
+
++ 常见监控的分类
+
+  + 自己写程序或脚本控制
+
+    + 监控mysql是否提供正常的服务
+
+      mysqladmin -uroot -p123456 -hlocalhost ping
+
+      输出：mysqld is alive
+
+    + 获取mysql当前的几个状态值
+
+      mysqladmin -uroot -p123456 -hlocalhost status
+
+    + 获取数据库当前的连接信息
+
+      mysqladmin -uroot -p123456 -hlocalhost processlist
+
+    + 获取当前数据库的连接数
+
+      mysqladmin -uroot -p123456 -BNe 'select host,count(host) from processlist group by host;' information_schema
+
+    + 检查，修复、分析、优化MySQL server中相关的表
+
+      mysqlcheck -uroot -p123456 --all-databases
+
+    + 在mysql连接客户端执行以下命令：
+
+      + 监控mysql使用临时表是否过多，是否有临时表过大而不得不从内存中换出到磁盘文件上
+
+        show  status like 'created_tmp%'
+
+      + 锁定状态：获得锁定总次数，锁定造成其他线程等待的次数，以及锁定等待时间信息
+
+        show status like '%lock%'
+
+      + innodb_log_waits状态变量直接反应出Innodb log buffer 空间不足造成等待的次数
+
+        show status like 'innodb_log_waits'
+
+  + 监控采用商业解决方案
+
+  + 监控开源软件：
+
+    cacti、nagios、zabbix开源的网络监控工具
+
+
+
+18、
