@@ -930,4 +930,37 @@
 
 
 
-18、
+18、mysql定时维护
+
++ mysql设置定时器
+
+  + 查看是否开启event 
+
+    show variables like '%sche%'
+
+    如果是off开启：
+
+    set global event_scheduler=1
+
++ 创建定时器
+
+  create event test_event on schedule every 1 second on completion preserve disable do call test_proc();
+
+  注意：当为on completion preserve 时，当event到期了，event会被disable，但是该event还是会在
+
+  当为on completion not preserve时，当event到期时，该event会被自动删除
+
+  
+
+  + 开启事件test_event
+
+    alter event test_event on completion preserve enable
+
+  + 关闭事件test_event
+
+    alter event test_event on completion preserve disable
+
+
+
+19、mysql备份和还原
+
