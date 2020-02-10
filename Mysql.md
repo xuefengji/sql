@@ -120,9 +120,11 @@ char和varchar存储中文字符时，使用一个1个字符，utf-8存储中文
 #### 存储引擎
 
 1、什么是存储引擎
-表的类型
+
+  表的类型
 
 2、如何查看MySql的存储引擎
+
 show engines
 show engines\G 以网格形式查看
 show variables like ‘have%’ ：查看显示支持的存储引擎信息
