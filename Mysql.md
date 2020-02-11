@@ -490,17 +490,17 @@ select select_expr[,select_expr查询表达式]
   
     + 添加：
   
-      + forioreign key (字段名) references 参照的表名(参照表的字段名) ：没有指定外键名称mysql会自动创建外键名称
+      + foreign key (字段名) references 参照的表名(参照表的字段名) ：没有指定外键名称mysql会自动创建外键名称
   
       + constraint 外键别名  foreign key (字段名) references 参照的表名(参照表的字段名) 
   
       + 动态添加：
   
-        alter table tbl_name add constraint 外键名称 forioreign key (字段名) references 参照的表名(参照表的字段名)
+        alter table tbl_name add constraint 外键名称 foreign key (字段名) references 参照的表名(参照表的字段名)
   
     + 删除
   
-      alter table tbl_name drop   forioreign key  外键名称
+      alter table tbl_name drop   foreign key  外键名称
 
 
 
