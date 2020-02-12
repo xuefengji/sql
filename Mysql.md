@@ -461,10 +461,12 @@ select select_expr[,select_expr查询表达式]
   + 左外连接
 
     left [outer] join:显示左表的全部记录及右表符合连接条件的记录,当没有记录时以null显示
+    select u.id,u.username,u.sex,p.proName from user as u left join provinces on u.proId= p.id;
 
   + 右外连接
 
     right [outer] join:显示右表的全部记录及左表符合连接条件的记录,当没有记录时以null显示
+    select u.id,u.username,u.sex,p.proName from user as u right join provinces on u.proId= p.id;
 
 + 外键:保证数据的一致性和完整性
   + 参照已有表的主键,将主表与子表建立关联关系,父表对记录进行操作时,子表中与之对应的信息也应有相应的改变
