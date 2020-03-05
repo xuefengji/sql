@@ -56,13 +56,13 @@ use maizi
 
 无符号：unsined 
 
-zerofill：零填充，当插入的数据没有达到最小范围时，用0进行填充，设置zerofill后会自动设置为无符号
+zerofill：零填充，当插入的数据没有达到最小范围时，用 0 进行填充，设置 zerofill 后会自动设置为无符号
 
 
 
 2、浮点类型：可以四舍五入
 
-+ float[(M,D)]   M代表的总位数，D代表小数点后的位数
++ float[(M,D)]   M 代表的总位数，D 代表小数点后的位数
 + double
 + decimal ：内部以字符串形式存储，精度比较高
 
@@ -72,18 +72,18 @@ zerofill：零填充，当插入的数据没有达到最小范围时，用0进�
 
 3、字符串
 
-+ char(M) ：定长字符串，M代表字符长度，空间大时间少，会去掉字符串末尾空格，开始空格不会被去掉
-+ varchar(M)：变长字符串 M代表字符长度，空间小时间多，结尾和开始的空格都不会被去掉
++ char(M) ：定长字符串，M 代表字符长度，空间大时间少，会去掉字符串末尾空格，开始空格不会被去掉
++ varchar(M)：变长字符串  M 代表字符长度，空间小时间多，结尾和开始的空格都不会被去掉
 + TINYTEXT
 + TEXT :存储文本字符，不能有默认值
 + MEDIUMTEXT
 + LONGTEXT
-+ ENUM("value1","value2"......)：枚举类型字符串，最多列举65535个，插入数据时可以填入序号，可以去掉空格
++ ENUM("value1","value2"......)：枚举类型字符串，最多列举 65535 个，插入数据时可以填入序号，可以去掉空格
 + SET("value1","value2"............)：集合
 
-char>varchar>text速率
+char>varchar>text 速率
 
-char和varchar存储中文字符时，使用一个1个字符，utf-8存储中文字符时使用3个字符
+char 和 varchar 存储中文字符时，使用一个1个字符，utf-8 存储中文字符时使用 3 个字符
 
 
 
@@ -93,27 +93,27 @@ char和varchar存储中文字符时，使用一个1个字符，utf-8存储中文
 
   insert test10 values(‘1 12：12：12’)
 
-  结果为1天的小时数加上12小时
+  结果为 1 天的小时数加上 12 小时
 
   insert test10 values(‘12：11’)
 
-  结果为12：11：00
+  结果为 12：11：00
 
   insert test10 values(‘1211’)
 
-  结果为00：12：11
+  结果为 00：12：11
 
 + DATE：日期
 
   insert test11 values(‘1211’)、insert test11 values(‘12/1/1’)、insert test11 values(‘120101’)
 
-  结果为2012-01-01
+  结果为 2012-01-01
 
 + DATETIME：日期时间
 
 + TIMESTAMP：时间戳
 
-+ YEAR：年份（1901-2155），可以设置4位年份、2位年份、字符串形式，需要注意的时0，字符串0认为2000年，0代表0000
++ YEAR：年份（1901-2155），可以设置 4 位年份、2 位年份、字符串形式，需要注意的时 0，字符串 0 认为 2000 年，0 代表 0000
 
 5、二进制类型
 
@@ -123,15 +123,14 @@ char和varchar存储中文字符时，使用一个1个字符，utf-8存储中文
 
   表的类型
 
-2、如何查看MySql的存储引擎
+2、如何查看 MySql 的存储引擎
 
 show engines
-show engines\G 以网格形式查看
+show engines\G  以网格形式查看
 show variables like ‘have%’ ：查看显示支持的存储引擎信息
 show variables like ‘storage_engine’：查看默认的存储引擎
 
-
-3、mysql常用存储引擎及特点
+3、mysql 常用存储引擎及特点
 InnoDB：
 MyISAM：
 MEMORy：
@@ -158,7 +157,7 @@ create table [if not exists] tbl_name(字段名 字段类型 [unsigned|zerofill]
 
   create table if not exists user1(id int ,username varchar(20),card char(18),primary key(id,card));
 
-  设置主键时可以省略primary
+  设置主键时可以省略 primary
 
   create table if not exists user1(id int key,username varchar(20));
 
@@ -168,11 +167,11 @@ create table [if not exists] tbl_name(字段名 字段类型 [unsigned|zerofill]
 
   create table if not exists user2(id int key auto_increment,username varchar(20));
 
-  这只指定auto_inctement值：
+  这只指定 auto_inctement 值：
 
   create table if not exists user2(id int key auto_increment,username varchar(20))auto_increment=100;
 
-  默认情况下，插入null或其他数据时，id会根据已有最大号自加1
+  默认情况下，插入 null 或其他数据时，id 会根据已有最大号自加 1
 
   修改自增长值：alter table user2 auto_increment=500；
 
@@ -190,13 +189,13 @@ create table [if not exists] tbl_name(字段名 字段类型 [unsigned|zerofill]
 
   
 
-+ unique key：唯一，可以省略key
++ unique key：唯一，可以省略 key
 
   
 
 + default：默认值
 
-  not null配合默认值使用
+  not null 配合默认值使用
 
   create table if not exists user3(id int key auto_increment,username varchar(20)not null，password char(32)not null，age tinyint unsigned not null default 18);
 
@@ -227,7 +226,7 @@ create table [if not exists] tbl_name(字段名 字段类型 [unsigned|zerofill]
 
 + 添加和删除字段
 
-  + 添加:add
+  + 添加: add
 
     alter table tbl_name add 字段名称 字段类型[约束条件] [first|after 字段名]
 
@@ -273,7 +272,7 @@ create table [if not exists] tbl_name(字段名 字段类型 [unsigned|zerofill]
 
 
 
-#### 表数据操作DML
+#### 表数据操作 DML
 
 1、插入数据
 
@@ -311,7 +310,7 @@ delete from tbl_name [where 条件] [order by 字段名] [limit 限制条数]
 
 
 
-#### 查询数据操作DQL
+#### 查询数据操作 DQL
 
 1、单表查询：
 
@@ -335,7 +334,7 @@ select select_expr[,select_expr查询表达式]
 
   + 至少有一列，可以有多列
   + *表示所有字段，table_name.字段为哪个表中的字段
-  + 可以使用[as] alias_name为其赋予别名
+  + 可以使用[as] alias_name 为其赋予别名
 
 + 去除重复的值
 
@@ -343,29 +342,29 @@ select select_expr[,select_expr查询表达式]
 
 + where条件查询
 
-  + 比较运算符：=、>= 、<=、> 、<、!=、!>、!<、<=>可以检测null值
+  + 比较运算符：=、>= 、<=、> 、<、!=、!>、!<、<=>可以检测 null 值
 
-  + 指定范围:between and   / not between and
+  + 指定范围: between and   / not between and
 
-  + 指定集合:in /not in
+  + 指定集合: in /not in
 
-  + 匹配字符串:like \not  like
+  + 匹配字符串: like \not  like
 
-    %:代表0个一个或多个任意字符串
+    %: 代表 0 个一个或多个任意字符串
 
-    _:代表1个任意字符
+    _: 代表1个任意字符
 
   + 是否为控制: is null \ is not null
 
   + 多个查询条件: and\or 
 
-+ 分组查询:group by
++ 分组查询: group by
 
   + group by:
     + select * from user group by sex
     + select * from user group by sex,id  多个条件分组
 
-  注意:如果使用group by出现以下错误:
+  注意:如果使用 group by 出现以下错误:
 
   ```
   Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'test.user.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
@@ -385,7 +384,7 @@ select select_expr[,select_expr查询表达式]
 
   
 
-  + 配合group_concat()得到分组详情
+  + 配合 group_concat() 得到分组详情
 
     select proID,group_concat(username)from user group by sex;
 
@@ -393,11 +392,11 @@ select select_expr[,select_expr查询表达式]
 
     + count()
 
-      + count(*)表示统计总记录数
+      + count(*) 表示统计总记录数
 
         select proID,group_concat(username),count(*)from user group by sex;
 
-      + count(字段名):不统计null值
+      + count(字段名): 不统计 null 值
 
     + max()
 
@@ -407,7 +406,7 @@ select select_expr[,select_expr查询表达式]
 
     + sum()
 
-  + 配合with rollup 记录上面的所有记录总和:对分组之后再进行统计
+  + 配合 with rollup 记录上面的所有记录总和:对分组之后再进行统计
 
     select proID,group_concat(username),count(*)from user group by sex with rollup;
 
@@ -416,17 +415,17 @@ select select_expr[,select_expr查询表达式]
   + 只能再分组之后
   + select proID,group_concat(username),count(*) from user group by sex having count (*) >2;
 
-+ order by:对结果排序
++ order by: 对结果排序
 
-  + desc降序
+  + desc 降序
 
-  + asc升序:默认排序方式
+  + asc 升序:默认排序方式
 
   + 可以使用字段位置进行排序
 
   + 可以多个字段排序,如果第一个字段值一样会根据其他字段进行排序
 
-  + 随机记录查询,配合rand()函数
+  + 随机记录查询,配合 rand() 函数
 
     select * from user order by rand();
 
@@ -434,23 +433,23 @@ select select_expr[,select_expr查询表达式]
 
   + limit 显示条数
 
-    select  * from user limit 10;显示10条
+    select  * from user limit 10;显示 10 条
 
   + limit 偏移量,显示条数
 
-    select  * from user limit 0,1;   第一条偏移量为0,可以实现分页
+    select  * from user limit 0,1;   第一条偏移量为 0,可以实现分页
 
 
 
 2、多表连接查询
 
-连接查询:将2个或2个以上的表按照某个条件连接起来,从中选取需要的数据
+连接查询:将 2 个或 2 个以上的表按照某个条件连接起来,从中选取需要的数据
 
 + 内连接查询:查询多个表中符合连接条件的数据记录
 
   + join|cross join |inner join
 
-  + 通过on连接条件
+  + 通过 on 连接条件
 
   + 显示两个表中符合连接条件的记录
 
@@ -460,12 +459,12 @@ select select_expr[,select_expr查询表达式]
 
   + 左外连接
 
-    left [outer] join:显示左表的全部记录及右表符合连接条件的记录,当没有记录时以null显示
+    left [outer] join: 显示左表的全部记录及右表符合连接条件的记录,当没有记录时以 null 显示
     select u.id,u.username,u.sex,p.proName from user as u left join provinces on u.proId= p.id;
 
   + 右外连接
 
-    right [outer] join:显示右表的全部记录及左表符合连接条件的记录,当没有记录时以null显示
+    right [outer] join:显示右表的全部记录及左表符合连接条件的记录,当没有记录时以 null 显示
     select u.id,u.username,u.sex,p.proName from user as u right join provinces on u.proId= p.id;
 
 + 外键:保证数据的一致性和完整性
@@ -475,8 +474,8 @@ select select_expr[,select_expr查询表达式]
   
   + 注意:
     + 父子表应该使用相同的存储引擎,而且禁止使用临时表
-    + 存储引擎只能为Innodb
-    + 外键列和参照列必须创建索引,如果外键列不存在索引,mysql会自动创建索引列
+    + 存储引擎只能为 Innodb
+    + 外键列和参照列必须创建索引,如果外键列不存在索引,mysql 会自动创建索引列
     + 外键列和参照列必须具有相似的数据类型,其中数字的长度或是否有符号位必须相同,而字符的长度可以不同
     
   + 外键约束的参照操作
@@ -484,15 +483,15 @@ select select_expr[,select_expr查询表达式]
     
       forioreign key (字段名) references 参照的表名(参照表的字段名) on delete|on update cascade
     
-    + set null:从父表删除或更新,并设置子表中的外键列位null.如果使用该选项,必须保证子表列没有指定not null
+    + set null:从父表删除或更新,并设置子表中的外键列位 null.如果使用该选项,必须保证子表列没有指定 not null
     + restrict:拒绝对父表的删除或更新操作
-    + no action:标准SQL的关键字,再Mysql中与restrict相同
+    + no action:标准 SQL 的关键字,再 Mysql 中与 restrict 相同
     
   + 添加删除外键
   
     + 添加：
   
-      + foreign key (字段名) references 参照的表名(参照表的字段名) ：没有指定外键名称mysql会自动创建外键名称
+      + foreign key (字段名) references 参照的表名(参照表的字段名) ：没有指定外键名称mysql 会自动创建外键名称
   
       + constraint 外键别名  foreign key (字段名) references 参照的表名(参照表的字段名) 
   
@@ -526,7 +525,7 @@ select select_expr[,select_expr查询表达式]
 
 + 子查询的情况：
 
-  + 由[not] in引发的子查询
+  + 由 [not] in 引发的子查询
 
     select username from user where in(select ........)
 
@@ -534,11 +533,11 @@ select select_expr[,select_expr查询表达式]
 
     select username from user where score>=(select ........)
 
-  + 使用[not] exists引发的子查询
+  + 使用 [not] exists 引发的子查询
 
     select username from user where exists(select ........)
 
-  + 使用any|some或all引发的子查询
+  + 使用 any|some 或 all 引发的子查询
 
     ```
     关键字           any            some            all
@@ -562,7 +561,7 @@ select select_expr[,select_expr查询表达式]
 
 5、正则表达式查询
 
-+ regexp的匹配方式
++ regexp 的匹配方式
 
   select * from user where username regexp '^t';
 
@@ -586,7 +585,7 @@ select select_expr[,select_expr查询表达式]
 
 
 
-6、mysql中的运算符使用
+6、mysql 中的运算符使用
 
 + 算术运算符
 
