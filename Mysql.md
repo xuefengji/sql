@@ -143,7 +143,7 @@ MEMORy：
 
 1、如何创建数据表
 
-create table [if not exists] tbl_name(字段名 字段类型 [unsigned|zerofill] [not null] [default] [[primary ] key|unique [key]])engine=引擎名称 charset=编码方式 auto_increment = z自增长值;
+create table [if not exists] tbl_name(字段名 字段类型 [unsigned|zerofill] [not null] [default] [[primary ] key|unique [key]])engine=引擎名称 charset=编码方式 auto_increment = 自增长值;
 
 完整性约束条件：
 
