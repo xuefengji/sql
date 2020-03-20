@@ -147,7 +147,7 @@
   
       + out：输出参数：可在存储过程内部改变，并返回
   
-        在调用存储过程之前设置的值，调用时查询显示为null，只会显示在存储过程中设置的值
+        在调用存储过程之前设置的值，调用时查询显示为 null，只会显示在存储过程中设置的值
   
       + inout：输入输出参数，可在调用时指定，并可修改和返回
   
@@ -173,7 +173,7 @@
 
     select specific_name,body from mysql.proc;
 
-    或show create procedure 存储过程名字
+    或 show create procedure 存储过程名字
 
   + 删除存储过程
 
@@ -185,7 +185,7 @@
 
     characteristic:
 
-    {condition sql | no sql：表示子程序不包含sql语句|reads sql data：表示子程序中包含读数据的语句|modifies sql data：表示子程序中包含写数据的语句} |
+    {condition sql | no sql：表示子程序不包含 sql 语句|reads sql data：表示子程序中包含读数据的语句|modifies sql data：表示子程序中包含写数据的语句} |
 
     sql security {definer表示只有定义者才能执行|invoker表示调用者可以执行} :指明权限|
 
@@ -203,7 +203,7 @@
 
   end if
 
-+ case分支
++ case 分支
 
   case  case_value 
 
@@ -215,7 +215,7 @@
 
   end case
 
-  其中，case_value表示条件判断的变量
+  其中，case_value 表示条件判断的变量
 
   when_value 表示变量的取值
 
@@ -227,7 +227,7 @@
 
 + 循环语句
 
-  + while循环
+  + while 循环
 
     while 条件 do
 
@@ -253,7 +253,7 @@
 
     if 条件 then
 
-    ​	leave loop名字；
+    ​	leave loop 名字；
 
     end if；
 
@@ -427,7 +427,7 @@
 
   注意：trigger_event 与表操作方式激活触发程序的 sql 语句并不很类似，如：
 
-  关于 insert 的 before 触发程序不仅能被 insert  语句激活，也能被 load data 语句激活
+  关于 insert  的 before 触发程序不仅能被 insert  语句激活，也能被 load data 语句激活
 
   特别说明：
 
@@ -443,7 +443,7 @@
 
     show triggers;
 
-  + mysql中有一个information_schema.triggers 表，存储所有库中的所有触发器，desc information_schema.trigger 可以查看触发器结构
+  + mysql 中有一个information_schema.triggers 表，存储所有库中的所有触发器，desc information_schema.trigger 可以查看触发器结构
 
   + 查看触发器名字
 
@@ -457,7 +457,7 @@
 
 8、sql锁
 
-不同的引擎支持不同的锁：MyISAM  和memory 采用的是表级锁；bdb 采用的是页面锁，也支持表级锁；Innodb 支持行级锁，也支持表级锁，但默认情况下采用的是行级锁
+不同的引擎支持不同的锁：MyISAM  和 memory 采用的是表级锁；bdb 采用的是页面锁，也支持表级锁；Innodb 支持行级锁，也支持表级锁，但默认情况下采用的是行级锁
 
 + mysql3 种锁的特性：
   + 表级锁：开销小、加锁快，不会出现死锁，锁定力度大，发生锁冲突的概率最高，并发度最低
@@ -468,7 +468,7 @@
   + 表级锁更适用于以查询为主，只有少量按索引条件更新数据的应用，如 web 应用
   + 行级锁更适用于有大量按索引条件并发更新少量不同数据，同时又有并发查询的应用，如一些在线事务处理系统
 
-+ MyISAM表锁模式：表共享读锁、表独占写锁
++ MyISAM 表锁模式：表共享读锁、表独占写锁
 
   + 表锁兼容性
 
@@ -498,7 +498,7 @@
 
       上面两种锁都是串行，在一定条件下，MyISAM 表也支持查询和插入操作的并发进行：
 
-      MyISAM 有一个系统变量 concurrent_insert，专门用以控制并发插入的行为，其值可设置为0、1、2
+      MyISAM 有一个系统变量 concurrent_insert，专门用以控制并发插入的行为，其值可设置为 0、1、2
 
       + 0：不允许并发插入
       + 1：如果MyISAM表中没有空洞(即表的中间没有被删除的行)，MyISAM 允许在一个进程读表的同时，另一个进程从表尾插入记录，这也是 mysql 的默认设置
@@ -508,7 +508,7 @@
 
     + 锁调度：
 
-      思考：一个进程请求某个 MyISAM 表的读锁，同时另一个进程也请求统一表的写锁，mysql 如何处理？
+      思考：一个进程请求某个 MyISAM 表的读锁，同时另一个进程也请求统一表的写锁，mysql  如何处理？
 
       答：写进程先获得锁，即使读请求先到锁等待队列，写请求后到，写锁也会插到读锁队列。mysql 认为请求比读请求更重要。mysql 不太适合于有大量更新操作和查询操作的原因，因为，大量的更新操作会造成查询操作很难获得读锁，从而可能永远阻塞
 
@@ -524,7 +524,7 @@
 
   show engines  ：InnoDB 支持
 
-+ 查看mysql当前默认的存储引擎
++ 查看 mysql 当前默认的存储引擎
 
   show variables like '%storage_engine%';
 
@@ -540,7 +540,7 @@
 
 + 创建事务
 
-  set autocommit= 0//将自动提交关闭，否则对 update、insert 等更新数据的操作会自动提交
+  set autocommit= 0 //将自动提交关闭，否则对 update、insert 等更新数据的操作会自动提交
 
   start transaction   //在 InnoDB 锁中会相当于 unlock tables 解锁的作用
 
@@ -560,7 +560,7 @@
 
   update.....
 
-  savepoint s1//表示记录位置
+  savepoint s1 //表示记录位置
 
   insert.....
 
@@ -617,7 +617,7 @@
 
     在 mysql 的配置文件中加入以下参数
 
-    log-slow-queries=d:/mysql/log/mysqld-slow-query.log //指定日志存放路径，该目录要有写的权限
+    log-slow-queries=d:/mysql/log/mysqld-slow-query.log  //指定日志存放路径，该目录要有写的权限
 
     long-query-time= 5     //设置慢查询时间
 
@@ -775,7 +775,7 @@
 
     对于需要做排序的 myisam 表查询，如带有 order by 字句的 sql。适当增加read_rnd_buffer_size 的值，可以改善此类的 sql 性能。但需要注意的是read_rnd_buffer_size 是每个 session 独占的，如果默认值设置太大，会造成内存浪费
 
-+ Innodb内存优化
++ Innodb 内存优化
 
   innodb 用一块内存区做 IO 缓存池，该缓存池不仅用来缓存 innodb 的索引块，而且也用来缓存innodb 的数据库
 
